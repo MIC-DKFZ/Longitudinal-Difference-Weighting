@@ -6,3 +6,5 @@ _Copyright © German Cancer Research Center (DKFZ) and contributors. Please make
 ## Overview
 
 Welcome to the repository for the paper **"Longitudinal Segmentation of MS Lesions via Temporal Difference Weighting"**, accepted for the [*Longitudinal Disease Tracking and Modelling with Medical Images and Data*](https://ldtm-miccai.github.io/) workshop at MICCAI 2024! This repository will soon provide the code for the implementation of the Difference Weighting Block for longitudinal segmentation of MS lesions integrated within the popular [nnUNet framework](https://github.com/MIC-DKFZ/nnUNet).
+
+### Read the paper: &nbsp; &nbsp;   [![arXiv](https://img.shields.io/badge/arXiv-2404.03010-B31B1B.svg)](https://arxiv.org/abs/2409.13416)
