@@ -48,9 +48,15 @@ from difference_weighting.architectures.longi_unet_difference_weighting import L
 
 ## Citation
 
-If you use this code in your research, please cite our paper:
+If you use this code in your research, please cite our papers:
 
 ```bibtex
+@article{kirchhoff2026exploiting,
+  title={Exploiting Longitudinal Context in Clinician-Verified Interactive Lesion Tracking}, 
+  author={Kirchhoff, Yannick and Rokuss, Maximilian and Mertens, Daniel Philipp and Füller, David and Hamm, Benjamin and Schreyer, Andreas and Ritter, Oliver and Maier-Hein, Klaus},
+  journal={arXiv preprint arXiv:2605.23118},
+  year={2026}
+}
 @article{rokuss2024longitudinal,
   title={Longitudinal segmentation of MS lesions via temporal Difference Weighting},
   author={Rokuss, Maximilian and Kirchhoff, Yannick and Roy, Saikat and Kovacs, Balint and Ulrich, Constantin and Wald, Tassilo and Zenk, Maximilian and Denner, Stefan and Isensee, Fabian and Vollmuth, Philipp and Kleesiek, Jens and Maier-Hein, Klaus},
