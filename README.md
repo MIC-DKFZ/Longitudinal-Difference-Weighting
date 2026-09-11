@@ -6,6 +6,12 @@ This repository provides the implementation of the **Temporal Difference Weighti
 
 #### Read the paper: &nbsp; &nbsp;   [![arXiv](https://img.shields.io/badge/arXiv-2409.13416-B31B1B.svg)](https://arxiv.org/abs/2409.13416)
 
+### [MICCAI 2026] Exploiting Longitudinal Context in Clinician-Verified Interactive Lesion Tracking
+
+This repository also hosts the network architectures of our follow-up work on **verified lesion tracking**, which segments a single lesion in a follow-up scan from a point prompt and the baseline appearance of that lesion.
+
+#### Read the paper: &nbsp; &nbsp;   [![arXiv](https://img.shields.io/badge/arXiv-2605.23118-B31B1B.svg)](https://arxiv.org/abs/2605.23118)
+
 ### This repository is part of LongiSeg!
 
 
@@ -13,7 +19,7 @@ This repository provides the implementation of the **Temporal Difference Weighti
     <img src="documentation/assets/LongiSeg.jpg" alt="LongiSeg" width="600"/>
 </a>
 
-#### [LongiSeg](https://github.com/MIC-DKFZ/LongiSeg) extends the powerful nnU-Net framework, specifically optimizing it for longitudinal medical image segmentation. By incorporating temporal information across multiple timepoints, LongiSeg enhances segmentation accuracy and consistency, making it a robust tool for analyzing medical imaging over time. The Difference Weighting Block inclduing the training pipeline is already included!
+#### [LongiSeg](https://github.com/MIC-DKFZ/LongiSeg) extends the powerful nnU-Net framework, specifically optimizing it for longitudinal medical image segmentation. By incorporating temporal information across multiple timepoints, LongiSeg enhances segmentation accuracy and consistency, making it a robust tool for analyzing medical imaging over time. The Difference Weighting Block including the training pipeline is already included!
 
 ## Introduction
 
@@ -27,6 +33,11 @@ The TDW block is designed to be modular and can be incorporated into various bac
 - The **TDW block** as a standalone module.
 - A **longitudinal UNet (LongiUNet)** without TDW.
 - A **longitudinal UNet with TDW (LongiUNetDiffWeighting)** for enhanced feature merging.
+
+For lesion tracking it further provides:
+- A **longitudinal UNet primed with the prior segmentation (LongiUNetPrimed)**.
+- A **tracking UNet (LongiUNetTracking)** with early fusion of the point prompts in the current and the prior scan.
+- A **tracking UNet with TDW (LongiUNetTrackingDiffWeighting)**, combining the point prompts with latent temporal difference weighting.
 
 ## Usage
 
@@ -44,6 +55,8 @@ Import the block or the network:
 from difference_weighting.building_blocks.difference_weighting_block import DifferenceWeightingBlock
 from difference_weighting.architectures.longi_unet import LongiUNet
 from difference_weighting.architectures.longi_unet_difference_weighting import LongiUNetDiffWeighting
+from difference_weighting.architectures.longi_unet_tracking import (LongiUNetPrimed, LongiUNetTracking,
+                                                                    LongiUNetTrackingDiffWeighting)
 ```
 
 ## Citation
