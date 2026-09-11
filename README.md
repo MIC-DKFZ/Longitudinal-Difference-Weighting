@@ -4,7 +4,7 @@
 
 This repository provides the implementation of the **Temporal Difference Weighting (TDW) block**, introduced in the paper **"Longitudinal Segmentation of MS Lesions via Temporal Difference Weighting"**, accepted for the [*Longitudinal Disease Tracking and Modelling with Medical Images and Data*](https://ldtm-miccai.github.io/) workshop at MICCAI 2024.
 
-#### Read the paper: &nbsp; &nbsp;   [![arXiv](https://img.shields.io/badge/arXiv-2404.03010-B31B1B.svg)](https://arxiv.org/abs/2409.13416)
+#### Read the paper: &nbsp; &nbsp;   [![arXiv](https://img.shields.io/badge/arXiv-2409.13416-B31B1B.svg)](https://arxiv.org/abs/2409.13416)
 
 ### This repository is part of LongiSeg!
 
