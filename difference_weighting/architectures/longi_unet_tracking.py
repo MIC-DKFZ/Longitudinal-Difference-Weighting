@@ -10,6 +10,14 @@ from difference_weighting.utils import recursive_find_python_class
 from difference_weighting.building_blocks.difference_weighting_block import DifferenceWeightingBlock
 
 
+def _split_stacked_tracking_input(x, num_image_channels):
+    t = x.shape[1] - 2 * num_image_channels - 2
+    if t < 0:
+        raise RuntimeError(f"Expected a stacked input with at least {2 * num_image_channels + 2} channels for a "
+                           f"network with {num_image_channels} input channels, but got {x.shape[1]}.")
+    return torch.split(x, [num_image_channels, num_image_channels, t, 1, 1], dim=1)
+
+
 class LongiUNetPrimed(nn.Module):
     def __init__(self, input_channels, num_classes, backbone_class_name, **architecture_kwargs):
         super().__init__()
@@ -82,10 +90,12 @@ class LongiUNetTracking(LongiUNetPrimed):
             **architecture_kwargs
         )
 
+        self._num_image_channels = input_channels
+
     def forward(self, d_c, d_p=None, t_p=None, g_c=None, g_p=None):
         # allow for concatenation at different points in the code
         if d_p is None and t_p is None and g_c is None and g_p is None:
-            d_c, d_p, t_p, g_c, g_p = torch.tensor_split(d_c, 5, dim=1)
+            d_c, d_p, t_p, g_c, g_p = _split_stacked_tracking_input(d_c, self._num_image_channels)
         x = torch.cat([d_c, d_p, g_c, g_p], dim=1)
         return self.backbone(x)
 
@@ -117,10 +127,12 @@ class LongiUNetTrackingDiffWeighting(LongiUNetPrimed):
 
         self.skip_diff_weighting = DifferenceWeightingBlock(architecture_kwargs['features_per_stage'], architecture_kwargs['conv_op'])
 
+        self._num_image_channels = input_channels
+
     def forward(self, d_c, d_p=None, t_p=None, g_c=None, g_p=None):
         # allow for concatenation at different points in the code
         if d_p is None and t_p is None and g_c is None and g_p is None:
-            d_c, d_p, t_p, g_c, g_p = torch.tensor_split(d_c, 5, dim=1)
+            d_c, d_p, t_p, g_c, g_p = _split_stacked_tracking_input(d_c, self._num_image_channels)
         x_c = torch.cat([d_c, g_c], dim=1)
         x_p = torch.cat([d_p, g_p], dim=1)
         skips_p = self.backbone.encoder(x_p)
