@@ -1,6 +1,6 @@
 [project]
 name = "difference_weighting"
-version = "0.2.0"
+version = "0.2.1"
 requires-python = ">=3.9"
 description = "Implementation of the difference weighting block for longitudinal medical image segmentation"
 readme = "README.md"
@@ -18,7 +18,7 @@ keywords = [
 ]
 dependencies = [
     "torch>=2.1.2",
-    "dynamic-network-architectures>=0.3.1,<0.4"
+    "dynamic-network-architectures>=0.3.1,<0.5"
 ]
 
 [project.urls]
